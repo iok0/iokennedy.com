@@ -1,0 +1,25 @@
+{{ define "main" }}
+<article>
+  <header>
+    {{ with .CurrentSection }}{{ if ne .Kind "home" }}<p class="kicker"><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>{{ end }}{{ end }}
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+    {{ if not .Date.IsZero }}<p class="meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time> · {{ .ReadingTime }} min read</p>{{ end }}
+  </header>
+  {{ .Content }}
+  {{- /* Front matter: related: [{ path: "/ai/other-post", why: "One line on why to read it." }] */ -}}
+  {{ with .Params.related }}
+  <aside class="related">
+    <h2>Related</h2>
+    <ul class="posts">
+      {{ range . }}
+      {{ $why := .why }}
+      {{ with site.GetPage .path }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ with $why }}<span>{{ . }}</span>{{ end }}</li>
+      {{ end }}
+      {{ end }}
+    </ul>
+  </aside>
+  {{ end }}
+</article>
+{{ end }}

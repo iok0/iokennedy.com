@@ -1,0 +1,18 @@
+{{ define "main" }}
+<article>
+  <header>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+  </header>
+  {{ .Content }}
+  {{- /* Engineering with AI reads newest first; a series reads in its front-matter weight order. */ -}}
+  {{ $pages := cond (eq .Section "ai") .RegularPages.ByDate.Reverse .RegularPages.ByWeight }}
+  {{ with $pages }}
+  <ul class="posts">
+    {{ range . }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a><span>{{ .Date.Format "2 Jan 2006" }}</span></li>
+    {{ end }}
+  </ul>
+  {{ end }}
+</article>
+{{ end }}

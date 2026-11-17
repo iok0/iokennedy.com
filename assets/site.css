@@ -1,0 +1,112 @@
+:root {
+  --bg: #fbfaf7;
+  --fg: #1d1d1b;
+  --muted: #5f5d58;
+  --rule: #e4e1da;
+  --accent: #1f5f8b;
+  --code-bg: #f1eee7;
+  --measure: 40rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161615;
+    --fg: #e8e6e1;
+    --muted: #a19e97;
+    --rule: #2f2e2b;
+    --accent: #7db5dc;
+    --code-bg: #22211f;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 1.0625rem/1.65 Charter, "Bitstream Charter", "Iowan Old Style", Georgia, serif;
+}
+header.site, main, footer.site {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+header.site {
+  display: flex; flex-wrap: wrap; gap: .5rem 1.25rem;
+  align-items: baseline; justify-content: space-between;
+  padding-top: 1.5rem; padding-bottom: 1rem;
+  border-bottom: 1px solid var(--rule);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: .95rem;
+}
+header.site .name { font-weight: 600; color: var(--fg); text-decoration: none; }
+header.site nav { display: flex; gap: 1rem; }
+footer.site {
+  margin-top: 4rem; padding-top: 1rem; padding-bottom: 2rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted); font-size: .85rem;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+a { color: var(--accent); text-underline-offset: .15em; }
+h1, h2, h3 {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.25; letter-spacing: -.01em;
+}
+h1 { font-size: 2rem; margin: 2.5rem 0 .5rem; }
+h2 { font-size: 1.3rem; margin: 2.5rem 0 .5rem; }
+h3 { font-size: 1.05rem; margin: 2rem 0 .25rem; }
+.lede { font-size: 1.2rem; color: var(--muted); margin-top: 0; }
+.kicker, .meta {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: .85rem; color: var(--muted); margin: 0;
+}
+.kicker { margin-top: 2.5rem; }
+.kicker + h1 { margin-top: .25rem; }
+
+code, pre { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .88em; }
+code { background: var(--code-bg); padding: .1em .3em; border-radius: 3px; }
+pre { background: var(--code-bg); padding: .9rem 1rem; overflow-x: auto; border-radius: 4px; line-height: 1.45; }
+pre code { background: none; padding: 0; }
+
+img { max-width: 100%; height: auto; border-radius: 4px; }
+figure { margin: 1.5rem 0; }
+figcaption { color: var(--muted); font-size: .9rem; margin-top: .4rem; }
+
+/* Inline SVG diagrams (layouts/shortcodes/diagram.html) */
+svg.diagram { display: block; width: 100%; height: auto; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+svg.diagram .d-box { fill: var(--bg); stroke: var(--rule); stroke-width: 1.5; }
+svg.diagram .d-drafted { stroke: var(--muted); stroke-dasharray: 5 4; }
+svg.diagram .d-proof { stroke: var(--accent); stroke-width: 2.5; }
+svg.diagram .d-verdict { fill: var(--code-bg); stroke: var(--accent); stroke-width: 1.5; }
+svg.diagram .d-line { stroke: var(--muted); stroke-width: 1.5; fill: none; }
+svg.diagram .d-head { fill: var(--muted); }
+svg.diagram text { fill: var(--fg); font-size: 13px; }
+svg.diagram .d-eyebrow { fill: var(--muted); font-size: 10.5px; font-weight: 600; letter-spacing: .06em; }
+svg.diagram .d-accent { fill: var(--accent); }
+svg.diagram .d-title { font-size: 15px; font-weight: 600; }
+svg.diagram .d-note { fill: var(--muted); font-size: 12px; font-style: italic; }
+svg.diagram .d-label { fill: var(--muted); font-size: 13px; font-weight: 600; font-style: italic; }
+svg.diagram .d-mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .92em; }
+.diagram-narrow { display: none; }
+@media (max-width: 34rem) {
+  .has-narrow .diagram-wide { display: none; }
+  .has-narrow .diagram-narrow { display: block; max-width: 22rem; margin: 0 auto; }
+}
+
+.table-wrap, table { display: block; overflow-x: auto; }
+table { border-collapse: collapse; margin: 1.25rem 0; font-size: .92rem; }
+th, td { border-bottom: 1px solid var(--rule); padding: .4rem .7rem; text-align: left; vertical-align: top; }
+th { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-weight: 600; }
+
+blockquote { margin: 1.5rem 0; padding-left: 1rem; border-left: 3px solid var(--rule); color: var(--muted); }
+
+ul.posts, ol.posts { padding-left: 1.2rem; }
+ul.posts li, ol.posts li { margin: .6rem 0; }
+.posts span { display: block; color: var(--muted); font-size: .9rem; }
+
+aside.related {
+  margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--rule);
+}
+aside.related h2 { font-size: 1rem; margin-top: 0; }
+section.series h3 { margin-bottom: .25rem; }

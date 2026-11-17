@@ -1,0 +1,19 @@
+{{ define "main" }}
+<article>
+  {{ .Content }}
+  <h2>Writing</h2>
+  {{- /* Posts in the Engineering with AI section, newest first. */ -}}
+  {{ with site.GetPage "/ai" }}
+  {{ if .RegularPages }}
+  <section class="series">
+    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    <ul class="posts">
+      {{ range .RegularPages.ByDate.Reverse }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a><span>{{ .Date.Format "2 Jan 2006" }}</span></li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+  {{ end }}
+</article>
+{{ end }}

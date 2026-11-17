@@ -1,0 +1,17 @@
+{{- /* Usage: {{< diagram src="diagrams/x.svg" narrow="diagrams/x-narrow.svg" caption="..." >}}
+       Inlines SVGs from assets/ so they pick up the site's colour tokens (light and dark).
+       `narrow` is optional: a one-column layout shown instead of `src` on small screens.
+       The two SVGs must use different element ids. */ -}}
+{{- $svg := resources.Get (.Get "src") -}}
+{{- if not $svg }}{{ errorf "diagram: %s not found in assets/" (.Get "src") }}{{ end -}}
+{{- $narrow := "" -}}
+{{- with .Get "narrow" }}{{ $narrow = resources.Get . }}{{ if not $narrow }}{{ errorf "diagram: %s not found in assets/" . }}{{ end }}{{ end -}}
+<figure class="diagram-figure{{ if $narrow }} has-narrow{{ end }}">
+<div class="diagram-wide">{{ $svg.Content | safeHTML }}</div>
+{{- with $narrow }}
+<div class="diagram-narrow">{{ .Content | safeHTML }}</div>
+{{- end }}
+{{- with .Get "caption" }}
+<figcaption>{{ . | markdownify }}</figcaption>
+{{- end }}
+</figure>

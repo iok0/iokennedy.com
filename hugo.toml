@@ -1,0 +1,23 @@
+baseURL = "https://iokennedy.com/"
+languageCode = "en-gb"
+title = "Irwin Kennedy"
+enableRobotsTXT = true
+
+[params]
+  author = "Irwin Kennedy"
+  email = "irwin.kennedy@iokennedy.com"
+  # GoatCounter site code; the counter loads on production builds only.
+  goatcounter = "iokennedy"
+  description = "Irwin Kennedy writes about software supply-chain security and building software with AI agents."
+
+[markup.goldmark.renderer]
+  unsafe = false
+
+[markup.highlight]
+  noClasses = false
+
+[taxonomies]
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
